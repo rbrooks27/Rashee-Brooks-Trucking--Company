@@ -1,102 +1,75 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <div
+      className="min-h-screen flex flex-col text-[var(--color-black)]"
+      style={{ backgroundColor: "var(--color-tan)" }}
+    >
+      {/* Header with cropped logo + nav */}
+      <header className="flex items-center justify-between px-6 sm:px-12 py-4 bg-[var(--color-tan)]">
+        <Link href="/" className="flex items-center space-x-2">
+          <Image
+            src="/TriceLogo.jpeg" // Full Logo
+            alt="Trice Icon"
+            width={60}
+            height={60}
+            className="rounded"
+          />
+          <span className="text-lg font-bold text-[var(--color-purple)] hidden sm:inline">
+            Trice Logistics
+          </span>
+        </Link>
+        <nav className="flex space-x-4 text-sm sm:text-base font-medium">
+          <Link href="/" className="hover:underline text-[var(--color-purple)]">Home</Link>
+          <Link href="/services" className="hover:underline text-[var(--color-purple)]">Services</Link>
+          <Link href="/about" className="hover:underline text-[var(--color-purple)]">About</Link>
+          <Link href="/contact" className="hover:underline text-[var(--color-purple)]">Contact</Link>
+        </nav>
+      </header>
+
+      {/* Main Content with large center logo */}
+      <main className="flex-grow flex flex-col items-center justify-center px-6 sm:px-12 py-10 text-center sm:text-left">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="/TriceLogoSmall.jpeg" // Full-size cropped logo centered
+          alt="Trice Logistics Logo"
+          width={300}
+          height={80}
           priority
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <h1 className="mt-8 text-3xl sm:text-4xl font-bold text-[var(--color-purple)]">
+          Welcome to Trice Logistics
+        </h1>
+        <p className="mt-2 text-lg">Driven to Deliver, Built To Lead.</p>
+
+        <div className="flex gap-4 items-center flex-col sm:flex-row mt-6">
+          <Link
+            href="/services"
+            className="rounded-full border border-transparent text-white font-medium text-sm sm:text-base h-7 sm:h-10 px-8"
+            style={{ backgroundColor: "var(--color-purple)" }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Our Services
+          </Link>
+          <Link
+            href="/about"
+            className="rounded-full border font-medium text-sm sm:text-base h-7 sm:h-10 px-8 bg-transparent"
+            style={{
+              borderColor: "var(--color-black)",
+              color: "var(--color-black)",
+            }}
           >
-            Read our docs
-          </a>
+            About Us
+          </Link>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="flex gap-6 flex-wrap items-center justify-center text-sm py-6 text-[var(--color-purple)]">
+        <Link href="/about" className="hover:underline">About</Link>
+        <Link href="/services" className="hover:underline">Services</Link>
+        <Link href="/contact" className="hover:underline">Contact</Link>
       </footer>
     </div>
   );
