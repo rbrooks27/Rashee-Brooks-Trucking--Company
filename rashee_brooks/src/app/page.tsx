@@ -1,76 +1,89 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Home() {
+  const pathname = usePathname();
+
+  const navItems = [
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ];
+
   return (
     <div
-      className="min-h-screen flex flex-col text-[var(--color-black)]"
+      className="min-h-screen flex flex-col sm:flex-row text-[var(--color-black)]"
       style={{ backgroundColor: "white" }}
     >
-      {/* Header with cropped logo + nav */}
-      <header className="flex items-center justify-between px-6 sm:px-12 py-4 bg-white">
-        <Link href="/" className="flex items-center space-x-2">
-          <Image
-            src="/TriceLogo.jpeg" // Full Logo
-            alt="Trice Icon"
-            width={60}
-            height={60}
-            className="rounded"
-          />
-          <span className="text-lg font-bold text-[var(--color-purple)] hidden sm:inline">
-            Trice Logistics
-          </span>
-        </Link>
-        <nav className="flex space-x-4 text-sm sm:text-base font-medium">
-          <Link href="/" className="hover:underline text-[var(--color-purple)]">Home</Link>
-          <Link href="/services" className="hover:underline text-[var(--color-purple)]">Services</Link>
-          <Link href="/about" className="hover:underline text-[var(--color-purple)]">About</Link>
-          <Link href="/contact" className="hover:underline text-[var(--color-purple)]">Contact</Link>
-        </nav>
-      </header>
-
-      {/* Main Content with large center logo */}
-      <main className="flex-grow flex flex-col items-center justify-center px-6 sm:px-12 py-10 text-center sm:text-left">
-        <Image
-          src="/TriceLogoSmall.jpeg"
-          alt="Trice Logistics Logo"
-          width={300}
-          height={80}
-          priority
-        />
-
-        <h1 className="mt-8 text-3xl sm:text-4xl font-bold text-[var(--color-purple)]">
-          Welcome to Trice Logistics
-        </h1>
-        <p className="mt-2 text-lg">Driven to Deliver, Built To Lead.</p>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row mt-6">
+      {/* Left Side Vertical Navigation */}
+      <aside className="flex sm:flex-col items-center sm:items-start gap-6 sm:gap-4 p-4 sm:p-8 border-r border-[var(--color-black)]">
+        {navItems.map((item) => (
           <Link
-            href="/services"
-            className="rounded-full border font-medium text-sm sm:text-base h-8 sm:h-12 px-8 bg-transparent transition hover:bg-[var(--color-white)] hover:text-purple"
-            style={{ backgroundColor: "var(--color-white)" }}
+            key={item.href}
+            href={item.href}
+            className={`relative font-medium text-sm sm:text-base px-6 py-2 rounded-full border border-[var(--color-black)] transition-all duration-300 ${
+              pathname === item.href
+                ? "bg-gradient-to-r from-[var(--color-plum)] to-[var(--color-blue)] text-white shadow-md ring-2 ring-[var(--color-plum)] ring-offset-2 font-semibold tracking-wide"
+                : "bg-transparent text-[var(--color-black)] hover:bg-[var(--color-blue)] hover:text-white transform hover:scale-105"
+            }`}
           >
-            Our Services
+            {item.name}
           </Link>
-          <Link
-            href="/about"
-            className="rounded-full border font-medium text-sm sm:text-base h-8 sm:h-12 px-8 bg-transparent transition hover:bg-[var(--color-white)] hover:text-purple"
-            style={{
-              borderColor: "var(--color-black)",
-              color: "var(--color-black)",
-            }}
-          >
-            About Us
-          </Link>
-        </div>
-      </main>
+        ))}
+      </aside>
 
-      {/* Footer */}
-      <footer className="flex gap-6 flex-wrap items-center justify-center text-sm py-6 text-[var(--color-purple)]">
-        <Link href="/about" className="hover:underline">About</Link>
-        <Link href="/services" className="hover:underline">Services</Link>
-        <Link href="/contact" className="hover:underline">Contact</Link>
-      </footer>
+      {/* Main Content Area with Right Image Section */}
+      <div className="flex-grow flex flex-col sm:flex-row">
+        {/* Center Content */}
+        <main className="flex-1 flex flex-col items-center justify-center px-6 sm:px-12 py-10 text-center">
+          <div className="">
+            <Image
+              src="/TriceLogoTrans.png"
+              alt="Trice Logistics Logo"
+              width={900}
+              height={400}
+              priority
+            />
+          </div>
+    
+        </main>
+
+        {/* Right Side Images */}
+<aside className="hidden sm:flex flex-col gap-4 p-6 w-1/3">
+  <Image
+    src="/boxtruck.jpg"
+    alt="Truck in motion"
+    width={400}
+    height={160}
+    className="w-full h-40 object-cover rounded-lg shadow-md"
+  />
+  <Image
+    src="/smile.jpg"
+    alt="Cargo loading"
+    width={400}
+    height={160}
+    className="w-full h-40 object-cover rounded-lg shadow-md"
+  />
+  <Image
+    src="/loadingtruck.jpg"
+    alt="Logistics operations"
+    width={400}
+    height={160}
+    className="w-full h-40 object-cover rounded-lg shadow-md"
+  />
+  <Image
+    src="/sunset.jpg"
+    alt="Fleet overview"
+    width={400}
+    height={160}
+    className="w-full h-40 object-cover rounded-lg shadow-md"
+  />
+</aside>
+      </div>
     </div>
   );
 }

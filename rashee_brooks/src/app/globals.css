@@ -7,6 +7,8 @@
   --color-white: #fffffff;
   --color-purple: #3B2030;
   --color-black: #000000;
+  --color-blue: aqua;
+  --color-plum: plum;
 }
 
 @theme inline {
